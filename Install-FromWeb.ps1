@@ -6,8 +6,10 @@ Param (
   [string]$ExecutePath = $null,
   $AddedPath
 )
+Write-Host $RemoteFile
+Write-Host $DownloadFile
 
-(New-Object Net.WebClient).DownloadFile($remoteFile, $downloadFile);
+Invoke-WebRequest -Uri $RemoteFile -OutFile $DownloadFile
 If ($DoExtractFile){
   Expand-Archive $DownloadFile -DestinationPath $AddedPath -Force
 }
